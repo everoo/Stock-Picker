@@ -14,7 +14,7 @@ def getDailyStocks(day):
     total = int(df_list[-3][0][0][7:-3])
     df = df_list[-2]
     for i in range(int(total/20)):
-        print(i)
+        print('\r'+day, end='')
         df = df.append(pd.read_html(requests.get(url+('&r='+str(20*(i+1)+1))).content)[-2][1:])
     df = df.rename(columns=df.loc[0])[1:]
     replacements = {'Perf Year': '0.00%', 'Perf Month': '0.00%', 'Perf Week': '0.00%', 'Debt/Eq': '0.30', 'Curr R': '2.00', 'ROE': '0.00%', 'Float Short': '0.00%', 'Inst Own': '0.00%', 'P/B': '3.00', 'Market Cap': '300000', 'Volatility W':'0.00%', 'Volatility M':'0.00%', 'SMA20':'0.00%', 'SMA50':'0.00%', 'SMA200':'0.00%', 'Change':'0.00%', 'RSI':'50.00', 'Gap':'0.00%', 'Rel Volume':'0.00'}
